@@ -14,7 +14,7 @@ Character Name	   What can this character do?
 
 
 
-5.	Which are the Non-Playing Characters of this game?
+Which are the Non-Playing Characters of this game?
 ●	Non-Playing characters are the ones that don't have an action or behavior when the user interacts with the game.
 ●	Hurdles, stones, bananas, coins, etc., are non-playing characters in the game.   
 
