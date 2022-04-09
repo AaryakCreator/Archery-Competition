@@ -56,10 +56,10 @@ class Player {
     var playerIndex = "players/player" + this.index;
     database.ref(playerIndex).update({
       positionX: this.positionX,
-      positionY: this.positionY,
-      rank: this.rank,
-      score: this.score,
-      life: this.life
+      positionY: this.positionY
+      // rank: this.rank,
+      // score: this.score,
+      // life: this.life
     });
   }
 

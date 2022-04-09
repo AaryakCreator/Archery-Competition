@@ -1,25 +1,22 @@
 var canvas;
-var backgroundImage, car1_img, car2_img, track;
+var backgroundImage, shooter1_img, shooter2_img, track;
 var fuelImage, powerCoinImage, lifeImage, boomImage, repairKitImage;
 var obstacle1Image, obstacle2Image, policeCarImage, potholesImage;
 var database, gameState;
 var form, player, playerCount;
-var allPlayers, car1, car2, fuels, powerCoins, obstacles;
+var allPlayers, archer1, archer2, fuels, powerCoins, obstacles;
 var cars = [];
 
 function preload() {
-  backgroundImage = loadImage("./assets/background.jpg");
-  car1_img = loadImage("../assets/car1.png");
-  car2_img = loadImage("../assets/car2.png");
-  battleBG = loadImage("../assets/background.jpg");
-  fuelImage = loadImage("./assets/fuel.png");
+  shooter1_img = loadImage("../assets/shooter1.png");
+  shooter2_img = loadImage("../assets/shooter2.png");
   powerCoinImage = loadImage("./assets/goldCoin.png");
   obstacle1Image = loadImage("./assets/waterBubble.png");
   obstacle2Image = loadImage("./assets/redbubble.png");
   lifeImage = loadImage("./assets/life.png");
   boomImage = loadImage("./assets/blast.png");
-  policeCarImage = loadImage("./assets/policeCar.jpg");
-  repairKitImage = loadImage("./assets/repairKit.jpg");
+
+  
   // potholesImage = loadImage("./assets/pothole.jpg");
 }
 

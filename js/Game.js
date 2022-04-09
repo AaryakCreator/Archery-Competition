@@ -9,7 +9,6 @@ class Game {
     this.leader2 = createElement("h2");
     this.playerMoving = false;
     this.leftKeyActive = false;
-    this.blast = false;
   }
 
   getState() {
@@ -30,46 +29,43 @@ class Game {
 
     form = new Form();
     form.display();
-
-    car1 = createSprite(width / 2 - 50, height - 100);
-    car1.addImage("car1", car1_img);
-    car1.scale = 0.07;
-    car1.addImage("blast", boomImage);
-
-    car2 = createSprite(width / 2 + 100, height - 100);
-    car2.addImage("car2", car2_img);
-    car2.scale = 0.07;
-    car2.addImage("blast", boomImage);
-
+    
+    archer1 = createSprite(width / 2 - 0, height - 100);
+    archer1.addImage("car1", shooter1_img);
+    archer1.scale = 0.1;
+    
+    archer2 = createSprite(width / 2 + 100, height - 100);
+    archer2.addImage("car2", shooter2_img);
+    archer2.scale = 0.1;
+    
 
 
-    cars = [car1, car2];
+    cars = [archer1, archer2];
 
-    // fuels = new Group();
-    // powerCoins = new Group();
 
     obstacles = new Group();
 
-    for (let i = 0; i< 1; i++) {
-      var balloons = createSprite(width /2, i);
-      obstacles.add(balloons);
-      
-    }
 
-    // var obstaclesPositions = [
-    //   { x: width / 2 + 250, y: height - 800, image: obstacle2Image },
-    //   { x: width / 2 - 150, y: height - 1300, image: obstacle1Image },
-    //   { x: width / 2 + 250, y: height - 1800, image: obstacle1Image },
-    //   { x: width / 2 - 180, y: height - 2300, image: obstacle2Image },
-    //   { x: width / 2, y: height - 2800, image: obstacle2Image },
-    //   { x: width / 2 - 180, y: height - 3300, image: obstacle1Image },
-    //   { x: width / 2 + 180, y: height - 3300, image: obstacle2Image },
-    //   { x: width / 2 + 250, y: height - 3800, image: obstacle2Image },
-    //   { x: width / 2 - 150, y: height - 4300, image: obstacle1Image },
-    //   { x: width / 2 + 250, y: height - 4800, image: obstacle2Image },
-    //   { x: width / 2, y: height - 5300, image: obstacle1Image },
-    //   { x: width / 2 - 180, y: height - 5500, image: obstacle2Image }
-    // ];
+      
+      
+    
+
+    var obstaclesPositions = [
+      { x: width / 2 + 50, y: height - 640, image: obstacle2Image },
+      { x: width / 2 - 50, y: height - 680, image: obstacle1Image },
+      { x: width / 2 + 50, y: height - 720, image: obstacle1Image },
+      { x: width / 2 - 80, y: height - 760, image: obstacle2Image },
+      { x: width / 2, y: height - 800, image: obstacle2Image },
+      { x: width / 2 - 80, y: height - 840, image: obstacle1Image },
+      { x: width / 2 + 80, y: height - 880, image: obstacle2Image },
+      { x: width / 2 + 50, y: height - 920, image: obstacle2Image },
+      { x: width / 2 - 50, y: height - 960, image: obstacle1Image },
+      { x: width / 2 + 50, y: height - 1000, image: obstacle2Image },
+      { x: width / 2, y: height - 1040, image: obstacle1Image },
+      { x: width / 2 - 80, y: height - 1080, image: obstacle2Image }
+    ];
+
+    this.addSprites(obstacles, obstaclesPositions.length, obstacle1Image, 0.07, obstaclesPositions);
 
     // Adding fuel sprite in the game
     // this.addSprites(fuels, 4, fuelImage, 0.02);
@@ -143,9 +139,9 @@ class Game {
     // player.getCarsAtEnd();
 
     if (allPlayers !== undefined) {
-      image(battleBG, 0, -height, width, height);
+      // image(battleBG, 0, -height, width, height);
 
-      // this.showFuelBar();
+      
       // this.showLife();
       // this.showLeaderboard();
 
@@ -157,13 +153,13 @@ class Game {
 
         //use data form the database to display the cars in x and y direction
         var x = allPlayers[plr].positionX;
-        var y = height - allPlayers[plr].positionY;
+        var y = allPlayers[plr].positionY;
 
-        var currentLife = allPlayers[plr].life;
-        if (currentLife <= 0) {
-          cars[index - 1].changeImage("blast");
-          cars[index - 1].scale = 0.3;
-        }
+        // var currentLife = allPlayers[plr].life;
+        // if (currentLife <= 0) {
+        //   cars[index - 1].changeImage("blast");
+        //   cars[index - 1].scale = 0.3;
+        // }
 
         cars[index - 1].position.x = x;
         cars[index - 1].position.y = y;
@@ -173,32 +169,32 @@ class Game {
           fill("red");
           ellipse(x, y, 60, 60);
 
-          this.handleFuel(index);
-          this.handlePowerCoins(index);
-          this.handlePoliceCar(index);
+          // this.handleFuel(index);
+          // this.handlePowerCoins(index);
+          // this.handlePoliceCar(index);
           this.handleObstacleCollision(index);
-          this.handleCarACollisionCarB(index);
+          // this.handleCarACollisionCarB(index);
 
-          if (player.life <= 0 ) {
-            this.blast = true;
-            this.playerMoving = false;
-          }
+          // if (player.life <= 0 ) {
+          //   this.blast = true;
+          //   this.playerMoving = false;
+          // }
 
           // Changing camera position in y direction
-          camera.position.y = cars[index - 1].position.y;
+          // camera.position.y = cars[index - 1].position.y;
         }
       }
 
-      if (this.playerMoving) {
-        player.positionY += 5;
-        player.update();
-      }
+      // if (this.playerMoving) {
+      //   player.positionY += 5;
+      //   player.update();
+      // }
 
       // handling keyboard events
       this.handlePlayerControls();
 
       // Finshing Line
-      const finshLine = height * 6 - 100;
+      // const finshLine = height * 6 - 100;
 
       if (player.positionY > finshLine) {
         gameState = 2;
@@ -246,51 +242,51 @@ class Game {
   //   pop();
   // }
 
-  showLeaderboard() {
-    var leader1, leader2;
-    var players = Object.values(allPlayers);
-    if (
-      (players[0].rank === 0 && players[1].rank === 0) ||
-      players[0].rank === 1
-    ) {
-      // &emsp;    This tag is used for displaying four spaces.
-      leader1 =
-        players[0].rank +
-        "&emsp;" +
-        players[0].name +
-        "&emsp;" +
-        players[0].score;
+  // showLeaderboard() {
+  //   var leader1, leader2;
+  //   var players = Object.values(allPlayers);
+  //   if (
+  //     (players[0].rank === 0 && players[1].rank === 0) ||
+  //     players[0].rank === 1
+  //   ) {
+  //     // &emsp;    This tag is used for displaying four spaces.
+  //     leader1 =
+  //       players[0].rank +
+  //       "&emsp;" +
+  //       players[0].name +
+  //       "&emsp;" +
+  //       players[0].score;
 
-      leader2 =
-        players[1].rank +
-        "&emsp;" +
-        players[1].name +
-        "&emsp;" +
-        players[1].score;
-    }
+  //     leader2 =
+  //       players[1].rank +
+  //       "&emsp;" +
+  //       players[1].name +
+  //       "&emsp;" +
+  //       players[1].score;
+  //   }
 
-    if (players[1].rank === 1) {
-      leader1 =
-        players[1].rank +
-        "&emsp;" +
-        players[1].name +
-        "&emsp;" +
-        players[1].score;
+  //   if (players[1].rank === 1) {
+  //     leader1 =
+  //       players[1].rank +
+  //       "&emsp;" +
+  //       players[1].name +
+  //       "&emsp;" +
+  //       players[1].score;
 
-      leader2 =
-        players[0].rank +
-        "&emsp;" +
-        players[0].name +
-        "&emsp;" +
-        players[0].score;
-    }
+  //     leader2 =
+  //       players[0].rank +
+  //       "&emsp;" +
+  //       players[0].name +
+  //       "&emsp;" +
+  //       players[0].score;
+  //   }
 
-    this.leader1.html(leader1);
-    this.leader2.html(leader2);
-  }
+  //   this.leader1.html(leader1);
+  //   this.leader2.html(leader2);
+  // }
 
   handlePlayerControls() {
-    if (!this.blast) {
+    // if (!this.blast) {
       
       if (keyIsDown(UP_ARROW)) {
         this.playerMoving = true;
@@ -303,50 +299,50 @@ class Game {
         player.positionY -= 10;
         player.update();
       }
-    }
+    // }
 
   }
 
-  handleFuel(index) {
-    // Adding fuel
-    cars[index - 1].overlap(fuels, function(collector, collected) {
-      player.fuel = 185;
-      //collected is the sprite in the group collectibles that triggered
-      //the event
-      collected.remove();
-    });
+  // handleFuel(index) {
+  //   // Adding fuel
+  //   cars[index - 1].overlap(fuels, function(collector, collected) {
+  //     player.fuel = 185;
+  //     //collected is the sprite in the group collectibles that triggered
+  //     //the event
+  //     collected.remove();
+  //   });
 
-    // Reducing Player car fuel
-    if (player.fuel > 0 && this.playerMoving) {
-      player.fuel -= 0.3;
-    }
+  //   // Reducing Player car fuel
+  //   if (player.fuel > 0 && this.playerMoving) {
+  //     player.fuel -= 0.3;
+  //   }
 
-    if (player.fuel <= 0) {
-      gameState = 2;
-      this.gameOver();
-    }
-  }
+  //   if (player.fuel <= 0) {
+  //     gameState = 2;
+  //     this.gameOver();
+  //   }
+  // }
 
-  handlePowerCoins(index) {
-    cars[index - 1].overlap(powerCoins, function(collector, collected) {
-      player.score += 20;
-      player.update();
-      //collected is the sprite in the group collectibles that triggered
-      //the event
-      collected.remove();
-    });
-  }
+  // handlePowerCoins(index) {
+  //   cars[index - 1].overlap(powerCoins, function(collector, collected) {
+  //     player.score += 20;
+  //     player.update();
+  //     //collected is the sprite in the group collectibles that triggered
+  //     //the event
+  //     collected.remove();
+  //   });
+  // }
 
-  handlePoliceCar(index) {
+  // handlePoliceCar(index) {
 
-    var policeCar = createSprite(cars[index - 1].positionX, cars[index - 1] + 50, 5, 5);
-    policeCar.addImage(policeCarImage);
-    policeCar.scale = 0.1;
+  //   var policeCar = createSprite(cars[index - 1].positionX, cars[index - 1] + 50, 5, 5);
+  //   policeCar.addImage(policeCarImage);
+  //   policeCar.scale = 0.1;
 
-    if (cars[index - 1].collide(obstacles)) {
-      policeCar.y -= 10; 
-    }
-  }
+  //   if (cars[index - 1].collide(obstacles)) {
+  //     policeCar.y -= 10; 
+  //   }
+  // }
 
   handleObstacleCollision(index) {
     if (cars[index - 1].collide(obstacles)) {
