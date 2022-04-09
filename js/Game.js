@@ -45,42 +45,48 @@ class Game {
 
     cars = [car1, car2];
 
-    fuels = new Group();
-    powerCoins = new Group();
+    // fuels = new Group();
+    // powerCoins = new Group();
 
     obstacles = new Group();
 
-    var obstaclesPositions = [
-      { x: width / 2 + 250, y: height - 800, image: obstacle2Image },
-      { x: width / 2 - 150, y: height - 1300, image: obstacle1Image },
-      { x: width / 2 + 250, y: height - 1800, image: obstacle1Image },
-      { x: width / 2 - 180, y: height - 2300, image: obstacle2Image },
-      { x: width / 2, y: height - 2800, image: obstacle2Image },
-      { x: width / 2 - 180, y: height - 3300, image: obstacle1Image },
-      { x: width / 2 + 180, y: height - 3300, image: obstacle2Image },
-      { x: width / 2 + 250, y: height - 3800, image: obstacle2Image },
-      { x: width / 2 - 150, y: height - 4300, image: obstacle1Image },
-      { x: width / 2 + 250, y: height - 4800, image: obstacle2Image },
-      { x: width / 2, y: height - 5300, image: obstacle1Image },
-      { x: width / 2 - 180, y: height - 5500, image: obstacle2Image }
-    ];
+    for (let i = 0; i< 1; i++) {
+      var balloons = createSprite(width /2, i);
+      obstacles.add(balloons);
+      
+    }
+
+    // var obstaclesPositions = [
+    //   { x: width / 2 + 250, y: height - 800, image: obstacle2Image },
+    //   { x: width / 2 - 150, y: height - 1300, image: obstacle1Image },
+    //   { x: width / 2 + 250, y: height - 1800, image: obstacle1Image },
+    //   { x: width / 2 - 180, y: height - 2300, image: obstacle2Image },
+    //   { x: width / 2, y: height - 2800, image: obstacle2Image },
+    //   { x: width / 2 - 180, y: height - 3300, image: obstacle1Image },
+    //   { x: width / 2 + 180, y: height - 3300, image: obstacle2Image },
+    //   { x: width / 2 + 250, y: height - 3800, image: obstacle2Image },
+    //   { x: width / 2 - 150, y: height - 4300, image: obstacle1Image },
+    //   { x: width / 2 + 250, y: height - 4800, image: obstacle2Image },
+    //   { x: width / 2, y: height - 5300, image: obstacle1Image },
+    //   { x: width / 2 - 180, y: height - 5500, image: obstacle2Image }
+    // ];
 
     // Adding fuel sprite in the game
-    this.addSprites(fuels, 4, fuelImage, 0.02);
+    // this.addSprites(fuels, 4, fuelImage, 0.02);
 
-    // Adding coin sprite in the game
-    this.addSprites(powerCoins, 18, powerCoinImage, 0.09);
+    // // Adding coin sprite in the game
+    // this.addSprites(powerCoins, 18, powerCoinImage, 0.09);
 
-    //Adding obstacles sprite in the game
-    this.addSprites(
-      obstacles,
-      obstaclesPositions.length,
-      obstacle1Image,
-      0.04,
-      obstaclesPositions
-    );
+    // //Adding obstacles sprite in the game
+    // this.addSprites(
+    //   obstacles,
+    //   obstaclesPositions.length,
+    //   obstacle1Image,
+    //   0.04,
+    //   obstaclesPositions
+    // );
 
-    this.addSprites(obstacles, 7, potholesImage, 0.2);
+    // this.addSprites(obstacles, 20, obstacle1Image, 0.2);
   }
 
   addSprites(spriteGroup, numberOfSprites, spriteImage, scale, positions = []) {
@@ -93,8 +99,8 @@ class Game {
         y = positions[i].y;
         spriteImage = positions[i].image;
       } else {
-        x = random(width / 2 + 150, width / 2 - 150);
-        y = random(-height * 4.5, height - 400);
+        x = random(width / 2 + 50, width / 2 - 50);
+        y = random(-height, height );
       }
       var sprite = createSprite(x, y);
       sprite.addImage("sprite", spriteImage);
@@ -106,8 +112,8 @@ class Game {
 
   handleElements() {
     form.hide();
-    form.titleImg.position(40, 50);
-    form.titleImg.class("gameTitleAfterEffect");
+    form.title.position(40, 50);
+    form.title.class("gameTitleAfterEffect");
 
     //C39
     this.resetTitle.html("Reset Game");
@@ -117,15 +123,15 @@ class Game {
     this.resetButton.class("resetButton");
     this.resetButton.position(width / 2 + 230, 100);
 
-    this.leadeboardTitle.html("Leaderboard");
-    this.leadeboardTitle.class("resetText");
-    this.leadeboardTitle.position(width / 3 - 60, 40);
+    // this.leadeboardTitle.html("Leaderboard");
+    // this.leadeboardTitle.class("resetText");
+    // this.leadeboardTitle.position(width / 3 - 60, 40);
 
-    this.leader1.class("leadersText");
-    this.leader1.position(width / 3 - 50, 80);
+    // this.leader1.class("leadersText");
+    // this.leader1.position(width / 3 - 50, 80);
 
-    this.leader2.class("leadersText");
-    this.leader2.position(width / 3 - 50, 130);
+    // this.leader2.class("leadersText");
+    // this.leader2.position(width / 3 - 50, 130);
   }
 
   play() {
@@ -134,14 +140,14 @@ class Game {
     
 
     Player.getPlayersInfo();
-    player.getCarsAtEnd();
+    // player.getCarsAtEnd();
 
     if (allPlayers !== undefined) {
-      image(track, 0, -height * 5, width, height * 6);
+      image(battleBG, 0, -height, width, height);
 
-      this.showFuelBar();
-      this.showLife();
-      this.showLeaderboard();
+      // this.showFuelBar();
+      // this.showLife();
+      // this.showLeaderboard();
 
       //index of the array
       var index = 0;
@@ -218,27 +224,27 @@ class Game {
     });
   }
 
-  showLife() {
-    push();
-    image(lifeImage, width / 2 - 130, height - player.positionY - 400, 20, 20);
-    fill("white");
-    rect(width / 2 - 100, height - player.positionY - 400, 185, 20);
-    fill("#f50057");
-    rect(width / 2 - 100, height - player.positionY - 400, player.life, 20);
-    noStroke();
-    pop();
-  }
+  // showLife() {
+  //   push();
+  //   image(lifeImage, width / 2 - 130, height - player.positionY - 400, 20, 20);
+  //   fill("white");
+  //   rect(width / 2 - 100, height - player.positionY - 400, 185, 20);
+  //   fill("#f50057");
+  //   rect(width / 2 - 100, height - player.positionY - 400, player.life, 20);
+  //   noStroke();
+  //   pop();
+  // }
 
-  showFuelBar() {
-    push();
-    image(fuelImage, width / 2 - 130, height - player.positionY - 350, 20, 20);
-    fill("white");
-    rect(width / 2 - 100, height - player.positionY - 350, 185, 20);
-    fill("#ffc400");
-    rect(width / 2 - 100, height - player.positionY - 350, player.fuel, 20);
-    noStroke();
-    pop();
-  }
+  // showFuelBar() {
+  //   push();
+  //   image(fuelImage, width / 2 - 130, height - player.positionY - 350, 20, 20);
+  //   fill("white");
+  //   rect(width / 2 - 100, height - player.positionY - 350, 185, 20);
+  //   fill("#ffc400");
+  //   rect(width / 2 - 100, height - player.positionY - 350, player.fuel, 20);
+  //   noStroke();
+  //   pop();
+  // }
 
   showLeaderboard() {
     var leader1, leader2;
@@ -286,24 +292,18 @@ class Game {
   handlePlayerControls() {
     if (!this.blast) {
       
-    if (keyIsDown(UP_ARROW)) {
-      this.playerMoving = true;
-      player.positionY += 10;
-      player.update();
-    }
+      if (keyIsDown(UP_ARROW)) {
+        this.playerMoving = true;
+        player.positionY += 10;
+        player.update();
+      }
 
-    if (keyIsDown(LEFT_ARROW) && player.positionX > width / 3 - 50) {
-      this.leftKeyActive = true;
-      player.positionX -= 5;
-      player.update();
+      if (keyIsDown(DOWN_ARROW)) {
+        this.playerMoving = true;
+        player.positionY -= 10;
+        player.update();
+      }
     }
-
-    if (keyIsDown(RIGHT_ARROW) && player.positionX < width / 2 + 300) {
-      this.leftKeyActive = false;
-      player.positionX += 5;
-      player.update();
-    }
-  }
 
   }
 

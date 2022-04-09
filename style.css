@@ -15,7 +15,8 @@ canvas {
 
 .gameTitle{
   width: 75%;
-  height: 80px;
+  height: 60px;
+  color: orange;
 }
 
 .gameTitleAfterEffect{
@@ -33,19 +34,19 @@ canvas {
 .customInput {
   width:200px;
   height:30px;
-  border: 3px solid white;
+  border: 3px solid red;
   border-radius: 5px;
   padding: 5px;
-  background-color:transparent;
+  background-color:whitesmoke;
   font-size: 20px;
   outline:none;
-  color:white;
+  color:black;
   font-family: vollkorn;
   text-align: center;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
+  color: black;
   opacity: 0.5; /* Firefox */
 }
 
