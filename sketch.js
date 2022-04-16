@@ -7,7 +7,7 @@ const Constraint = Matter.Constraint;
 
 
 var canvas, engine, world;
-var shooter1_img, shooter2_img;
+var shooter1_img, shooter2_img, arrow1, arrow2;
 var obstacle1Image, obstacle2Image;
 var database, gameState;
 var form, player, playerCount;

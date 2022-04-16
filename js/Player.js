@@ -26,6 +26,25 @@ class Player {
         
     }
 
+
+    addArrows() {
+        var arrowIndex = database.ref("Bows/arrow" + this.index);
+
+        if (this.index === 1) {
+            this.positionX = width / 4 - 100;
+            this.positionY = height / 2;
+        } else {
+            this.positionX = width / 4 + 900;
+            this.positionY = height / 2;
+        }
+
+        database.ref(arrowIndex).set( {
+            positionX: this.positionX,
+            positionY: this.positionY
+        });
+        
+    }
+
     
     getDistance() {
         var playerDistanceRef = database.ref("players/player" + this.index);
@@ -59,6 +78,12 @@ class Player {
           positionX: this.positionX,
           positionY: this.positionY
         });
+
+        var arrowIndex = "Bows/arrow" + this.index;
+        database.ref(arrowIndex).update( {
+           positionX: this.positionX,
+           positionY: this.positionY 
+        })
     }
 
 

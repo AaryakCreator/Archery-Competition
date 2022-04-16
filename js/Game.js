@@ -39,9 +39,15 @@ class Game {
         archer2.addImage("shooter1", shooter2_img);
         archer2.scale = 0.1;
 
-        arrow = new Arrow(200, 50);
+        arrow1 = createSprite(width /2  - 0, height - 100);
+        arrow1.addImage("Arrow", arrow_img);
+        arrow1.scale = 0.1;
 
-        bow = new Bow(arrow.body, {x:200, y:50});
+        arrow2= createSprite(width /2 + 100, height - 100);
+        arrow2.addImage("Arrow", arrow_img);
+        arrow2.scale = 0.1;
+
+        // bow = new Bow(arrow.body, {x:200, y:50});
 
         archers = [archer1, archer2];
 
@@ -125,8 +131,8 @@ class Game {
             
             var index = 0;
 
-            // arrow.position.x = player.positionX;
-            // arrow.position.y = player.positionY;
+            arrow1.position.x = player.positionX;
+            arrow1.position.y = player.positionY;
 
             for (var plr in allPlayers) {
                 index = index + 1;
@@ -141,6 +147,8 @@ class Game {
 
 
 
+
+
                 if (index === player.index) {
                     fill("red");
                     textSize(24);
@@ -151,6 +159,7 @@ class Game {
             }
 
             this.handlePlayerControls();
+
             this.handleArrowControls();
             
 
@@ -191,15 +200,15 @@ class Game {
 
     handleArrowControls() {
 
-        function mouseDragged() {
-            if (gameState == 1) {
-              Matter.Body.setPosition(arrow.body, {x: mouseX, y: mouseY});
-            }
+        if (keyIsDown(RIGHT_ARROW)) {
+            arrow1.positionX += 7;
+            player.update();
         }
+    
           
-        function mouseReleased() {
-            bow.fly();
-        }
+        // function mouseReleased() {
+        //     bow.fly();
+        // }
        
     }
 }
